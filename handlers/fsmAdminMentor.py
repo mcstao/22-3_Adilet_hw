@@ -74,7 +74,7 @@ async def cancel_reg(message: types.Message, state: FSMContext):
     curren_state = await state.get_state()
     if curren_state is not None:
         await state.finish()
-        await message.answer("Ну и пошел ты!")
+        await message.answer("Регистрация отменена!")
 
 def register_handlers_fsmAdminMentor(dp:Dispatcher):
     dp.register_message_handler(cancel_reg, state='*', commands=['cancel'])

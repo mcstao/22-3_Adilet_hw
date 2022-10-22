@@ -13,7 +13,7 @@ async def echo(message:types.Message):
 
     username = f"@{message.from_user.username}" \
         if message.from_user.username is not None else message.from_user.full_name
-    bad_words = ['java', 'bitch', 'lox', 'жинди', 'лошок']
+    bad_words = ['java',  'жинди']
     for word in bad_words:
         if word in message.text.lower():
             await bot.send_message(
@@ -24,7 +24,7 @@ async def echo(message:types.Message):
             await bot.delete_message(message.chat.id, message.message_id)
     username1 = f"@{message.from_user.username}" \
         if message.from_user.username is not None else message.from_user.full_name
-    good_words_women = ["прекрасна","красива","неземная","соска","богиня"]
+    good_words_women = ["прекрасна","красива","неземная","богиня"]
     for word in good_words_women:
         if word in message.text.lower():
             await message.answer(

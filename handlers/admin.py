@@ -25,7 +25,7 @@ async def kick(message: types.Message):
 
 async def delete_data_mentors(message: types.Message):
     if not message.from_user.id in ADMINS:
-        await message.reply("Ты не мой босс!")
+        await message.reply("Ты не куратор!")
     else:
         users = await sql_command_all_mentors()
         for user in users:
@@ -40,7 +40,7 @@ async def delete_data_mentors(message: types.Message):
 
 async def distribution_mentors(message: types.Message):
     if not message.from_user.id in ADMINS:
-        await message.reply("Ты не мой босс!")
+        await message.reply("Ты не куратор!")
     else:
         result = await sql_commands_get_all_id_mentors()
         for user_id in result:

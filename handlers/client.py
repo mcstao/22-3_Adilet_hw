@@ -1,9 +1,11 @@
 from aiogram import types, Dispatcher
 from aiogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 from config import bot, dp
+from parsers.fonar import parser
 from keyboards.client_kb import start_markup
 import random
 from database.bot_db_mentor import sql_command_random_mentors
+
 
 async def start_command(message: types.Message):
     await bot.send_message(message.from_user.id, f"Приветствую вас {message.from_user.first_name}!",
@@ -56,6 +58,15 @@ async def get_random_user(message: types.Message):
     await sql_command_random_mentors(message)
 
 
+async def parser_fonar(message: types.Message):
+    items = parser()
+    for item in items:
+        await message.answer(
+            f"{item['link']}\n\n"
+            f"{item['title']}\n"
+            f"{item['price']}"
+        )
+
 def register_handlers_client(dp: Dispatcher):
     dp.register_message_handler(start_command, commands=['start', 'info'])
     dp.register_message_handler(quiz_1, commands=['quiz'])
@@ -63,3 +74,4 @@ def register_handlers_client(dp: Dispatcher):
     dp.register_message_handler(mem,commands=['mem'])
     dp.register_message_handler(pin,commands=['pin'],commands_prefix='!')
     dp.register_message_handler(get_random_user, commands=['get'])
+    dp.register_message_handler(parser_fonar, commands=['fonar'])

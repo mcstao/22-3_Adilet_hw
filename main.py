@@ -2,10 +2,10 @@ import asyncio
 
 from aiogram.utils import executor
 
-from config import dp
+from config import dp,Dispatcher,bot
 import logging
 
-from handlers import client,admin,callback,fsmAdminMentor,extra,notifications
+from handlers import client,admin,callback,fsmAdminMentor,extra,notifications,inline
 from database.bot_db_mentor import sql_create
 
 async def on_startup(_):
@@ -16,8 +16,9 @@ async def on_startup(_):
 client.register_handlers_client(dp)
 callback.register_handlers_callback(dp)
 admin.register_handlers_admin(dp)
-notifications.register_handlers_notifications(dp)
 fsmAdminMentor.register_handlers_fsmAdminMentor(dp)
+inline.register_handler_inline(dp)
+notifications.register_handlers_notifications(dp)
 
 extra.register_handlers_extra(dp)
 

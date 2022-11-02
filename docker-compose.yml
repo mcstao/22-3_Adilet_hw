@@ -2,10 +2,10 @@ version: '3.3'
 
 services:
   bot:
-    container_name: bot
+    container_name: mcsbot
     restart: always
     build:
       context: .
       dockerfile: Dockerfile
     volumes:
-      - /opt/services/bot/mcs-bot
+      - /opt/services/mcsbot/mcs-bot
